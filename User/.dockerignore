@@ -1,0 +1,21 @@
+#Archivos de Git
+.git
+.gitignore
+
+# Dependencias de Node (estas se instalan DENTRO del contenedor)
+node_modules/
+
+# Archivos de depuración y logs
+npm-debug.log
+*.log
+
+# Archivos de entorno (¡Nunca deben ir en la imagen!)
+.env
+.env.*
+
+# Configuraciones del editor (personales, no de la app)
+.vscode/
+*.code-workspace
+
+# El propio Dockerfile no es necesario dentro de la imagen
+Dockerfile

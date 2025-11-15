@@ -12,6 +12,21 @@ services:
       - ./mongo-init:/docker-entrypoint-initdb.d
     networks:
       - microservices
+  users:
+    build: 
+      context: ./user
+      target: dev
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_URL=mongodb://admin:admin@mongodb:27017/moviesdb?authSource=admin
+      - PORT=3000
+    container_name: user_manager
+    ports:
+      - "3000:3000"
+    networks:
+      - microservices
+    volumes:
+      - ./User:/usr/src/app
 
 networks:
   microservices:
