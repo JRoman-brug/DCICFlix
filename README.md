@@ -58,7 +58,11 @@ For each service below, please fill in the Author and Endpoints sections if they
   - GET /recommendations — Get recommendations for a user
   - POST /recommendations — Generate recommendations with input
 
---
+## API-Gateway
+
+- Author: [Brugnoni Juan Román](https://github.com/JRoman-brug)
+- Description: Verify JWT
+- base url: api-gateway:3002
 
 ## How to update this README automatically
 
