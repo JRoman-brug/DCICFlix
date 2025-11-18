@@ -83,6 +83,7 @@ services:
       - microservices
     volumes:
       - ./Movies:/usr/src/app
+      - /usr/src/app/node_modules
    
 
   random-movies:
@@ -101,6 +102,7 @@ services:
       - microservices
     volumes:
       - ./RandomMovies:/usr/src/app
+      - /usr/src/app/node_modules
 
 networks:
   microservices:
