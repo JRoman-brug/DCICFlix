@@ -27,6 +27,8 @@ services:
       - microservices
     volumes:
       - ./User:/usr/src/app
+      - /usr/src/app/node_modules
+
   auth:
     build:
       context: ./Authentication
@@ -45,6 +47,7 @@ services:
       - microservices
     volumes:
       - ./Authentication:/usr/src/app
+      - /usr/src/app/node_modules
   api-gateway:
     build:
       context: ./ApiGateway
@@ -63,6 +66,7 @@ services:
       - microservices
     volumes:
       - ./ApiGateway:/usr/src/app
+      - /usr/src/app/node_modules
 networks:
   microservices:
     driver: bridge

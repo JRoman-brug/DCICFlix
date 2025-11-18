@@ -3,7 +3,7 @@
 .gitignore
 
 # Dependencias de Node (estas se instalan DENTRO del contenedor)
-node_modules/
+node_modules
 
 # Archivos de depuración y logs
 npm-debug.log
