@@ -19,7 +19,7 @@ let moviesColl;
 async function connectToDb() {
 	if (moviesColl) return moviesColl;
 	try {
-		dbClient = new MongoClient(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+		dbClient = new MongoClient(MONGO_URL);
 		await dbClient.connect();
 		const db = dbClient.db(); // driver will use DB from connection string if provided
 		moviesColl = db.collection('movies');
