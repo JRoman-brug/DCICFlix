@@ -1,6 +1,15 @@
 #!/bin/bash
-sleep 2
 echo "Starting 'seed' database..."
+
+# --- Espera robusta para MongoDB ---
+# Intenta conectarse a 'localhost' en un bucle hasta que tenga éxito
+until mongosh --host localhost --username admin --password admin --authenticationDatabase admin --eval "print('MongoDB is ready!')"
+do
+  echo "Waiting for MongoDB to start..."
+  sleep 1
+done
+
+echo "MongoDB is up - proceeding with import."
 
 mongoimport --host localhost \
             --username admin \
@@ -8,6 +17,7 @@ mongoimport --host localhost \
             --authenticationDatabase admin \
             --db moviesdb \
             --collection movies \
-            --file /docker-entrypoint-initdb.d/movies.json \
+            --type json \
+            --file /docker-entrypoint-initdb.d/movies.json
 
 echo "'Seed' complete."

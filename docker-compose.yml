@@ -12,7 +12,61 @@ services:
       - ./mongo-init:/docker-entrypoint-initdb.d
     networks:
       - microservices
-    
+      users:
+    build: 
+      context: ./User
+      target: dev
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_URL=mongodb://admin:admin@mongodb:27017/moviesdb?authSource=admin
+      - PORT=3000
+    container_name: user_manager
+    ports:
+      - "3000:3000"
+    networks:
+      - microservices
+    volumes:
+      - ./User:/usr/src/app
+      - /usr/src/app/node_modules
+
+  auth:
+    build:
+      context: ./Authentication
+      target: dev
+      dockerfile: Dockerfile
+    environment:
+      - DEBUG=auth:*
+      - MONGO_URL=mongodb://admin:admin@mongodb:27017/moviesdb?authSource=admin
+      - PORT=3001
+      - SECRET_JWT_KEY=CodigoEspagueti
+      - USER_MANAGER_ENDPOINT=http://users:3000
+    container_name: authentication
+    ports: 
+      - "3001:3001"
+    networks:
+      - microservices
+    volumes:
+      - ./Authentication:/usr/src/app
+      - /usr/src/app/node_modules
+  api-gateway:
+    build:
+      context: ./ApiGateway
+      target: dev
+      dockerfile: Dockerfile
+    environment:
+      - DEBUG=api-gateway:*
+      - PORT=3002
+      - SECRET_JWT_KEY=CodigoEspagueti
+      - AUTH_ENDPOINT=http://auth:3001/
+      - USER_MANAGE_ENDPOINT=http://users:3000/
+    container_name: api-gateway
+    ports: 
+      - "3002:3002"
+    networks:
+      - microservices
+    volumes:
+      - ./ApiGateway:/usr/src/app
+      - /usr/src/app/node_modules
   rabbitmq:
     image: rabbitmq:3.11-management
     container_name: rabbitmq
