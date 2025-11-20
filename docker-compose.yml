@@ -59,6 +59,8 @@ services:
       - SECRET_JWT_KEY=CodigoEspagueti
       - AUTH_ENDPOINT=http://auth:3001/
       - USER_MANAGE_ENDPOINT=http://users:3000/
+      - RANKING_ENDPOINT=http://calificacion:4000/
+      - OPINIONS_ENDPOINT=http://opiniones:4100/
     container_name: api-gateway
     ports: 
       - "3002:3002"
