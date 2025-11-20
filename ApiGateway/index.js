@@ -24,12 +24,17 @@ app.use(
   "/ratings",
   verifyJWT,
   proxy(RANKING_ENDPOINT, {
-    proxyReqPathResolver: (req) => {
-      const userId = req.headers["x-user-id"];
-      if ((req.url === "/" || req.url === "") && userId) {
-        return `/api/ratings${req.url}`;
+    proxyReqPathResolver: (req) => `/api/ratings${req.url}`,
+    proxyReqBodyDecorator: async (bodyContent, srcReq) => {
+      try {
+        const body = bodyContent && Object.keys(bodyContent).length ? bodyContent : {};
+        if (!body.userId && srcReq.headers["x-user-id"]) {
+          body.userId = srcReq.headers["x-user-id"];
+        }
+        return JSON.stringify(body);
+      } catch (err) {
+        return JSON.stringify(bodyContent || {});
       }
-      return `/api/ratings${req.url}`;
     },
   })
 );

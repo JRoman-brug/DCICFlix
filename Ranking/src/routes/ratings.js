@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/',
     [
-        body('userId').isString().notEmpty(),
+        body('userId').isString(),
         body('movieId').isString().notEmpty(),
         body('score').isNumeric().custom(v => v >= 0 && v <= 10),
         body('comment').optional().isString()
