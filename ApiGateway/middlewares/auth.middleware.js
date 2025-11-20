@@ -19,11 +19,15 @@ export async function verifyJWT(req, res, next) {
   try {
     log("Verify a token");
     const authorization = req.headers["authorization"];
+    log(`Authorization header raw: ${authorization}`);
+    log(`SECRET_JWT_KEY available: ${!!SECRET_JWT_KEY}`);
 
     if (!authorization) throw new BadRequestError("Token missing");
-    if (!authorization.startsWith("Bearer "))
+    if (!/^Bearer\s+/i.test(authorization))
       throw new BadRequestError("Denied access. Bearer token required");
-    const token = authorization.split(" ")[1];
+    // Extract token robustly (handle extra spaces): remove 'Bearer' and trim
+    const token = authorization.replace(/^Bearer\s+/i, "").trim();
+    if (!token) throw new BadRequestError("Denied access. Bearer token required");
 
     const {
       id: id,
