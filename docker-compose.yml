@@ -69,6 +69,43 @@ services:
     volumes:
       - ./ApiGateway:/usr/src/app
       - /usr/src/app/node_modules
+
+  movies:
+    build:
+      context: ./Movies
+      target: dev 
+      dockerfile: Dockerfile
+    environment:
+      - PORT=3003
+      - MONGO_URL=mongodb://admin:admin@mongodb:27017/moviesdb?authSource=admin
+    container_name: movies
+    ports: 
+      - "3003:3003"
+    networks:
+      - microservices
+    volumes:
+      - ./Movies:/usr/src/app
+      - /usr/src/app/node_modules
+   
+
+  random-movies:
+    build:
+      context: ./RandomMovies
+      target: dev 
+      dockerfile: Dockerfile
+    environment:
+      - PORT=3004
+      - MONGO_URL=mongodb://admin:admin@mongodb:27017/moviesdb?authSource=admin
+      - MOVIE_SERVICE_URL=http://movies:3003/
+    container_name: random-movies
+    ports: 
+      - "3004:3004"
+    networks:
+      - microservices
+    volumes:
+      - ./RandomMovies:/usr/src/app
+      - /usr/src/app/node_modules
+
   rabbitmq:
     image: rabbitmq:3.11-management
     container_name: rabbitmq
