@@ -24,29 +24,16 @@ app.use(
   "/ratings",
   verifyJWT,
   proxy(RANKING_ENDPOINT, {
-    proxyReqPathResolver: (req) => `/api/ratings${req.url}`
-  })
-);
-app.use(
-  "/opinions/movie",
-  proxy(OPINIONS_ENDPOINT, {
-    proxyReqPathResolver: (req) => `/api/opinions/movie${req.url}`,
-  })
-);
-
-app.use(
-  "/opinions/user",
-  verifyJWT,
-  proxy(OPINIONS_ENDPOINT, {
     proxyReqPathResolver: (req) => {
       const userId = req.headers["x-user-id"];
       if ((req.url === "/" || req.url === "") && userId) {
-        return `/api/opinions/user/${userId}`;
+        return `/api/ratings${req.url}`;
       }
-      return `/api/opinions/user${req.url}`;
+      return `/api/ratings${req.url}`;
     },
   })
 );
+
 app.use(errorMiddleware);
 app.listen(PORT);
 
