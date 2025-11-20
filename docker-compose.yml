@@ -57,6 +57,7 @@ services:
       - DEBUG=api-gateway:*
       - PORT=3002
       - SECRET_JWT_KEY=CodigoEspagueti
+      - MONGO_URL=mongodb://admin:admin@mongodb:27017/moviesdb?authSource=admin
       - AUTH_ENDPOINT=http://auth:3001/
       - USER_MANAGE_ENDPOINT=http://users:3000/
     container_name: api-gateway

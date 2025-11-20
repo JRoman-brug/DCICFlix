@@ -27,7 +27,7 @@ export async function getUserById(req, res, next) {
     const user = await userModel.findOne({
       _id: paramsParse.data.id,
     });
-    if (!user) return next(new BadReqPuestError("User not found"));
+    if (!user) return next(new BadRequestError("User not found"));
 
     return res.status(200).json({
       id: user.id,
@@ -71,11 +71,15 @@ export async function createUser(req, res, next) {
       return next(new BadRequestError(errorMessage));
     }
     const hashedPassword = await bcrypt.hash(bodyParse.data.password, SALT);
-    await userModel.create({
+    const newUser = await userModel.create({
       email: bodyParse.data.email,
       password: hashedPassword,
     });
-    res.status(201).send("User created successfully");
+    const payload = {
+      id: newUser.id,
+      email: newUser.email,
+    };
+    res.status(201).json(payload);
   } catch (err) {
     if (err.code === 11000)
       return next(new ConflictError("Email already in use"));
