@@ -1,12 +1,16 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
-import Login from "./pages/login";
+import Login from "./pages/Login";
+import Home from "./pages/Home"; 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Home principal */}
+        <Route path="/" element={<Home />} /> 
+
         {/* path es la URL, element es el componente a renderizar */}
         <Route path="/login" element={<Login />} />
 

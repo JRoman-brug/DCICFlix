@@ -1,5 +1,6 @@
 const express = require('express');
 
+
 // Use global fetch when available (Node 18+). Otherwise fall back to node-fetch (v2).
 let fetchFn = typeof fetch !== 'undefined' ? fetch : null;
 if (!fetchFn) {
@@ -12,6 +13,7 @@ if (!fetchFn) {
 }
 
 const app = express();
+
 const PORT = process.env.PORT || 3004;
 
 // URL of the other movie service you will implement. It should accept `?id=<number>` and return JSON.

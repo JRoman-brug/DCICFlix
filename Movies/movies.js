@@ -40,6 +40,7 @@ function mapMovieDoc(doc) {
 		title: doc.title,
 		year: doc.year && (doc.year.$numberInt ? parseInt(doc.year.$numberInt, 10) : doc.year) || doc.year,
 		plot: doc.plot || doc.fullplot || null,
+		poster: doc.poster || null,
 		imdb: doc.imdb || null,
 		genres: doc.genres || null
 	};
