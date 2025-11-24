@@ -4,11 +4,14 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import { MoviePage } from "./pages/MoviePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/movie/:id" element={<MoviePage />} />
+
         {/* Home principal */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

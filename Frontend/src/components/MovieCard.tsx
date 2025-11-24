@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { Movie } from "../types/movie";
 import { Film } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Props {
     movie: Movie;
@@ -23,6 +24,7 @@ export const MovieCard = ({ movie }: Props) => {
     }, [hasPoster]);
 
     return (
+        <Link to={`/movie/${movie._id}`}>
         <div className="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden 
                         hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer group">
 
@@ -85,5 +87,6 @@ export const MovieCard = ({ movie }: Props) => {
             )}
         </div>
         </div>
+        </Link>
     );
 };
