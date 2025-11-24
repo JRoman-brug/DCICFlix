@@ -2,12 +2,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
-<<<<<<< HEAD
 import Home from "./pages/Home"; 
 import { MoviePage } from "./pages/MoviePage";
-=======
-import Home from "./pages/Home";
->>>>>>> 664a76b3cd170383c4c0ab53ffe18bb97da9ecf2
 
 function App() {
   return (
