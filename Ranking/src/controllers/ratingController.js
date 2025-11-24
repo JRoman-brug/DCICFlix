@@ -16,16 +16,16 @@ const setPublisher = (publisher) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { userId, movieId, score, comment } = req.body;
-
+    const { userId, userMail, movieId, score, comment } = req.body;
     try {
-        const rating = new Rating({ userId, movieId, score, comment });
+        const rating = new Rating({ userId, userMail, movieId, score, comment });
         const saved = await rating.save();
 
         try {
         await rabbitPublisher.publish('rating.created', {
             ratingId: saved._id.toString(),
             userId,
+            userMail,
             movieId,
             score,
             comment,

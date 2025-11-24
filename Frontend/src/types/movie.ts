@@ -1,7 +1,8 @@
 export interface Movie {
-    id: number;
+    _id: number;
     title: string;
     poster: string;
     year: number;
     genres: string[];
+    plot?: string;
 }
