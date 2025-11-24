@@ -89,7 +89,6 @@ services:
     volumes:
       - ./Movies:/usr/src/app
       - /usr/src/app/node_modules
-   
 
   random-movies:
     build:
