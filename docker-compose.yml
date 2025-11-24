@@ -68,6 +68,7 @@ services:
       - "3002:3002"
     networks:
       - microservices
+      - frontend
     volumes:
       - ./ApiGateway:/usr/src/app
       - /usr/src/app/node_modules
@@ -158,8 +159,22 @@ services:
     restart: unless-stopped
     networks:
       - microservices
+  frontend:
+    build: 
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    environment:
+      - PORT=5173
+      - API_GATEWAY_ENDPOINT=http://api-gateway:3002/
+    ports:
+      - "5173:5173"
+    networks:
+      - frontend
 
 networks:
+  frontend:
+    driver: bridge
   microservices:
     driver: bridge
 

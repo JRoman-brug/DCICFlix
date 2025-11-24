@@ -1,22 +1,13 @@
-FROM node:20-alpine as base
+FROM node:20-alpine
+
 WORKDIR /usr/src/app
-EXPOSE 3000
 
-FROM base as dev
-RUN --mount=type=bind,source=package.json,target=package.json \
-  --mount=type=bind,source=package-lock.json,target=package-lock.json \
-  --mount=type=cache,target=/root/.npm \
-  npm ci --include=dev
-USER node
+COPY package.json package-lock.json ./
+
+RUN npm install
+
 COPY . .
-CMD ["npm","run","dev"]
 
-FROM base as prod
-RUN --mount=type=bind,source=package.json,target=package.json \
-  --mount=type=bind,source=package-lock.json,target=package-lock.json \
-  --mount=type=cache,target=/root/.npm \
-  npm ci --omit=dev
+EXPOSE 5173
 
-USER node
-COPY . .
-CMD ["node","scr/index.js"]
+CMD [ "npm", "run", "dev", "--", "--host" ]
