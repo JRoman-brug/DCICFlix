@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -10,10 +11,8 @@ function App() {
       <Routes>
         {/* Home principal */}
         <Route path="/" element={<Home />} />
-
-        {/* path es la URL, element es el componente a renderizar */}
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<h1>ENANO MOGOLICO</h1>} />
+        <Route path="/register" element={<Register />} />
 
         {/* Ruta comodín (*) para manejar errores 404 */}
         <Route path="*" element={<NotFound />} />

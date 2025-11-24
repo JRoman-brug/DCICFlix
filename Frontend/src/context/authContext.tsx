@@ -22,10 +22,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(userData);
   };
 
-  // 3. Función Logout: Limpia ambos
   const logout = () => {
-    localStorage.removeItem("jwt_token");
-    localStorage.removeItem("user_data");
     setUser(null);
   };
 

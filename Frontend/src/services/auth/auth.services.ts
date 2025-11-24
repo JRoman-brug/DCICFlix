@@ -33,6 +33,5 @@ export const logout = async () => {
   const response = await api.post("/auth/logout");
   localStorage.removeItem("jwt_token");
   localStorage.removeItem("user_data");
-  window.location.href = "/login";
   return response.data;
 };
