@@ -16,16 +16,21 @@ const setPublisher = (publisher) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { userId, movieId, score, comment } = req.body;
-
+    const { userId, userMail, movieId, score, comment } = req.body;
     try {
-        const rating = new Rating({ userId, movieId, score, comment });
+        // Evitar que un mismo usuario cree más de una calificación por película
+        const already = await Rating.findOne({ userId, movieId });
+        if (already) {
+            return res.status(409).json({ error: 'Ya existe una calificación de este usuario para esta película' });
+        }
+        const rating = new Rating({ userId, userMail, movieId, score, comment });
         const saved = await rating.save();
 
         try {
         await rabbitPublisher.publish('rating.created', {
             ratingId: saved._id.toString(),
             userId,
+            userMail,
             movieId,
             score,
             comment,

@@ -62,12 +62,15 @@ services:
       - USER_MANAGE_ENDPOINT=http://users:3000/
       - RANKING_ENDPOINT=http://calificacion:4000/
       - OPINIONS_ENDPOINT=http://opiniones:4100/
+      - OPINIONS_PROXY_ENDPOINT=http://opinions-proxy:4110/
+      - MOVIES_ENDPOINT=http://movies:3003/
       - RANDOM_MOVIES_ENDPOINT=http://random-movies:3004/
     container_name: api-gateway
     ports: 
       - "3002:3002"
     networks:
       - microservices
+      - frontend
     volumes:
       - ./ApiGateway:/usr/src/app
       - /usr/src/app/node_modules
@@ -88,7 +91,6 @@ services:
     volumes:
       - ./Movies:/usr/src/app
       - /usr/src/app/node_modules
-   
 
   random-movies:
     build:
@@ -158,8 +160,38 @@ services:
     restart: unless-stopped
     networks:
       - microservices
+  opinions-proxy:
+    build:
+      context: ./OpinionsProxy
+      dockerfile: Dockerfile
+    container_name: opinions-proxy
+    depends_on:
+      - opiniones
+    environment:
+      - PORT=4110
+      - OPINIONS_SERVICE_URL=http://opiniones:4100
+      - USERS_SERVICE_URL=http://users:3000
+    ports:
+      - "4110:4110"
+    restart: unless-stopped
+    networks:
+      - microservices
+  frontend:
+    build: 
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    environment:
+      - PORT=5173
+      - API_GATEWAY_ENDPOINT=http://api-gateway:3002/
+    ports:
+      - "5173:5173"
+    networks:
+      - frontend
 
 networks:
+  frontend:
+    driver: bridge
   microservices:
     driver: bridge
 

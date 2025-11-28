@@ -6,5 +6,7 @@ export const {
   USER_MANAGE_ENDPOINT = "http://users:3000/",
   RANKING_ENDPOINT = "http://calificacion:4000/",
   OPINIONS_ENDPOINT = "http://opiniones:4100/",
+  OPINIONS_PROXY_ENDPOINT = "http://opinions-proxy:4110/",
+  MOVIES_ENDPOINT = "http://movies:3003/",
   RANDOM_MOVIES_ENDPOINT = "http://random-movies:3004/",
 } = process.env;

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const OpinionSchema = new mongoose.Schema({
     ratingId: { type: String, required: true, unique: true },
     userId: { type: String, required: true },
+    userMail : { type: String, required: true },
     movieId: { type: String, required: true, index: true },
     score: { type: Number, required: true },
     comment: { type: String, default: '' },

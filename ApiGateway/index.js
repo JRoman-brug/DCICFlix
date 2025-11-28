@@ -6,7 +6,9 @@ import {
   PORT,
   USER_MANAGE_ENDPOINT,
   RANKING_ENDPOINT,
+  OPINIONS_PROXY_ENDPOINT,
   RANDOM_MOVIES_ENDPOINT,
+  MOVIES_ENDPOINT
 } from "./config.js";
 import proxy from "express-http-proxy";
 import { verifyJWT } from "./middlewares/auth.middleware.js";
@@ -28,6 +30,14 @@ app.use(
     },
   })
 );
+
+app.use(
+  "/movies",
+  proxy(MOVIES_ENDPOINT, {
+    proxyReqPathResolver: (req) => `/movies${req.url}`,
+  })
+);
+
 app.use(
   "/ratings",
   verifyJWT,
@@ -36,8 +46,11 @@ app.use(
     proxyReqBodyDecorator: async (bodyContent, srcReq) => {
       try {
         const body = bodyContent && Object.keys(bodyContent).length ? bodyContent : {};
-        if (!body.userId && srcReq.headers["x-user-id"]) {
+        if (srcReq.headers["x-user-id"]) {
           body.userId = srcReq.headers["x-user-id"];
+        }
+        if (srcReq.headers["x-user-email"]) {
+          body.userMail = srcReq.headers["x-user-email"];
         }
         return JSON.stringify(body);
       } catch (err) {
@@ -47,9 +60,17 @@ app.use(
   })
 );
 
+app.use(
+  "/opinions",
+  proxy(OPINIONS_PROXY_ENDPOINT, {
+    proxyReqPathResolver: (req) => `/api/opinions${req.url}`,
+  })
+);
+
 app.use(errorMiddleware);
 app.listen(PORT);
 
 log("Auth endpoint: ", AUTH_ENDPOINT);
 log("User-manage endpoint: ", USER_MANAGE_ENDPOINT);
+log("Opinions proxy endpoint: ", OPINIONS_PROXY_ENDPOINT);
 log("ApiGateway working");
