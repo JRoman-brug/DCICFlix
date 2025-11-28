@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { Film, Star, UserCircle2, ArrowLeft, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Navbar } from "../components/Navbar";
+import { useAuth } from "../context/authContext";
 
 export const MoviePage = () => {
     const { id } = useParams();
@@ -18,6 +19,8 @@ export const MoviePage = () => {
 
     const [userRating, setUserRating] = useState<number>(0);
     const [userComment, setUserComment] = useState("");
+    const { user, isAuthenticated } = useAuth();
+    const [hasUserOpinion, setHasUserOpinion] = useState(false);
 
     // Poster fallback handling (igual que MovieCard)
     const [posterError, setPosterError] = useState(false);
@@ -57,6 +60,17 @@ export const MoviePage = () => {
                 setPage(1);
                 setOpinions(data.opinions || []);
                 setAverage(data.stats?.avgScore ?? null);
+                // comprobar si el usuario actual ya dejó una opinión
+                try {
+                    const uid = user?.id;
+                    const uemail = user?.email;
+                    let has = false;
+                    if (uid) has = (data.opinions || []).some((o: any) => o.userId === uid);
+                    else if (uemail) has = (data.opinions || []).some((o: any) => o.userMail === uemail);
+                    setHasUserOpinion(Boolean(has));
+                } catch (e) {
+                    setHasUserOpinion(false);
+                }
             } catch (err) {
                 console.error(err);
             }
@@ -110,17 +124,27 @@ export const MoviePage = () => {
     const submitOpinion = async () => {
         if (!userComment.trim()) return;
 
+        if (!isAuthenticated) {
+            console.warn('Usuario no autenticado. Login requerido para enviar opinión.');
+            return;
+        }
+
+        if (hasUserOpinion) {
+            console.warn('Ya existe una opinión de este usuario para esta película.');
+            return;
+        }
+
         const body = {
             movieId: id,
             score: userRating,
             comment: userComment,
-            user: "Usuario Anónimo",
         };
 
         try {
-            await fetch(`http://localhost:3002/opinions`, {
+            const token = localStorage.getItem('jwt_token');
+            await fetch(`http://localhost:3002/ratings`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                 body: JSON.stringify(body),
             });
 
@@ -132,6 +156,7 @@ export const MoviePage = () => {
 
             setUserRating(0);
             setUserComment("");
+            setHasUserOpinion(true);
             setPage(1);
         } catch (err) {
             console.error(err);
@@ -297,6 +322,13 @@ export const MoviePage = () => {
                             <UserCircle2 className="w-10 h-10 text-zinc-500" />
 
                             <div className="flex-1">
+                                {!isAuthenticated ? (
+                                    <div className="text-sm text-zinc-400 mb-3">
+                                        You must <Link to="/login" className="text-dcicflix">log in</Link> to leave an opinion.
+                                    </div>
+                                ) : hasUserOpinion ? (
+                                    <div className="text-sm text-zinc-400 mb-3">You have already left an opinion for this movie.</div>
+                                ) : null}
                                 {/* Stars */}
                                 <div className="flex gap-1 mb-3">
                                     {[1, 2, 3, 4, 5].map((n) => (

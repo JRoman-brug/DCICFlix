@@ -9,7 +9,10 @@ const RatingSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now }
 });
 
-//(movieId + score)
+// índice para consultas por película y orden descendente por fecha
 RatingSchema.index({ movieId: 1, createdAt: -1 });
+
+// Asegura que un mismo usuario solo pueda valorar una vez cada película
+RatingSchema.index({ userId: 1, movieId: 1 }, { unique: true });
 
 module.exports = mongoose.model('Ranking', RatingSchema);

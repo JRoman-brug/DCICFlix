@@ -10,7 +10,7 @@ import dciflixLogo from "../assets/dciflix-logo.png";
 import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
 import type { User } from "../services/auth/auth.types";
-import ConfirmModal from "./modals/confirmModal";
+import ConfirmModal from "./modals/ConfirmModal";
 import { logout as logoutServices } from "../services/auth/auth.services";
 
 const ProfileSection = ({ userData }: { userData: User | null }) => {
@@ -31,12 +31,12 @@ const ProfileSection = ({ userData }: { userData: User | null }) => {
       </Link>
     );
   return (
-    <div className="flex items-center text-2xl gap-3">
-      <p>{userData.email.split("@")[0]}</p>
+    <div className="flex items-center gap-3">
+      <p className="text-sm font-semibold text-white">{userData.email.split("@")[0]}</p>
       <ConfirmModal
         title="Are you want logout"
         message="Are you want logout"
-        iconButton={<LogOutIcon size={32} color="white" />}
+        iconButton={<LogOutIcon size={18} className="text-white" />}
         handler={onLogout}
       />
     </div>

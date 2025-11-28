@@ -18,6 +18,11 @@ const setPublisher = (publisher) => {
 
     const { userId, userMail, movieId, score, comment } = req.body;
     try {
+        // Evitar que un mismo usuario cree más de una calificación por película
+        const already = await Rating.findOne({ userId, movieId });
+        if (already) {
+            return res.status(409).json({ error: 'Ya existe una calificación de este usuario para esta película' });
+        }
         const rating = new Rating({ userId, userMail, movieId, score, comment });
         const saved = await rating.save();
 
