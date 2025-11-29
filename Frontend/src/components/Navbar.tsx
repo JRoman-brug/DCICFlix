@@ -11,14 +11,12 @@ import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
 import type { User } from "../services/auth/auth.types";
 import ConfirmModal from "./modals/ConfirmModal";
-import { logout as logoutServices } from "../services/auth/auth.services";
 
 const ProfileSection = ({ userData }: { userData: User | null }) => {
   const { logout } = useAuth();
   const onLogout = async () => {
     try {
-      await logoutServices(); //Request to backend
-      logout(); // update context
+      await logout(); // update context
       addToast({ title: "Logout successfully", color: "success" });
     } catch (err) {
       console.log(err);
@@ -32,7 +30,9 @@ const ProfileSection = ({ userData }: { userData: User | null }) => {
     );
   return (
     <div className="flex items-center gap-3">
-      <p className="text-sm font-semibold text-white">{userData.email.split("@")[0]}</p>
+      <p className="text-sm font-semibold text-white">
+        {userData.email.split("@")[0]}
+      </p>
       <ConfirmModal
         title="Are you want logout"
         message="Are you want logout"
@@ -44,7 +44,7 @@ const ProfileSection = ({ userData }: { userData: User | null }) => {
 };
 
 export const Navbar = () => {
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   return (
     <HeroNavbar
       maxWidth="xl"
@@ -59,6 +59,16 @@ export const Navbar = () => {
         />
       </NavbarBrand>
 
+      {isAuthenticated && (
+        <NavbarItem>
+          <Link
+            to="/recomendations"
+            className="text-2xl font-bold hover:text-dcicflix transition"
+          >
+            Recomendations
+          </Link>
+        </NavbarItem>
+      )}
       <NavbarContent justify="end">
         <NavbarItem>
           <ProfileSection userData={user} />

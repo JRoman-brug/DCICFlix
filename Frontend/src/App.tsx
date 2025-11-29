@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import { MoviePage } from "./pages/MoviePage";
+import Recomendations from "./pages/Recomendations";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
 
         {/* Home principal */}
         <Route path="/" element={<Home />} />
+        <Route path="/recomendations" element={<Recomendations />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

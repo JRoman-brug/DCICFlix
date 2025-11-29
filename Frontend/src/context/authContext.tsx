@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { type User } from "../services/auth/auth.types"; // Tu interfaz de usuario
 
+import { logout as logoutServices } from "../services/auth/auth.services";
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
@@ -22,7 +23,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(userData);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await logoutServices(); //Request to backend
     setUser(null);
   };
 
