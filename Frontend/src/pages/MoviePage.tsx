@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { Film, Star, UserCircle2, ArrowLeft, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Navbar } from "../components/Navbar";
@@ -110,7 +110,7 @@ export const MoviePage = () => {
             { threshold: 0.4 }
         );
 
-        if (loaderRef.current && opinions.length > 0) {
+        if (loaderRef.current && opinions.length > 0)  {
             observer.observe(loaderRef.current);
         }
 
@@ -152,12 +152,12 @@ export const MoviePage = () => {
             const data = await res.json();
 
             setOpinions(data.opinions || []);
-            setAverage(data.average ?? null);
+            setAverage(data.stats?.avgScore ?? null);
 
             setUserRating(0);
             setUserComment("");
-            setHasUserOpinion(true);
             setPage(1);
+            setHasUserOpinion(true);
         } catch (err) {
             console.error(err);
         }
@@ -227,13 +227,7 @@ export const MoviePage = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.28 }}
                 >
-                    <Link
-                        to="/"
-                        className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm mb-6"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                        Back
-                    </Link>
+                                <BackButton />
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -390,7 +384,7 @@ export const MoviePage = () => {
                                             </span>
 
                                                 <div className="flex gap-1">
-                                                    {Array.from({ length: op.rating || 0 }).map(
+                                                    {Array.from({ length: op.score || 0 }).map(
                                                         (_, idx) => (
                                                             <Star
                                                                 key={idx}
@@ -424,3 +418,23 @@ export const MoviePage = () => {
 };
 
 export default MoviePage;
+
+// BackButton component used inside MoviePage
+function BackButton() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = (location.state as any)?.from;
+
+    const goBack = () => {
+        if (from) navigate(from);
+        else navigate(-1);
+    };
+
+    return (
+        <button onClick={goBack} className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm mb-6">
+            <ArrowLeft className="w-4 h-4" />
+            Back
+        </button>
+    );
+}

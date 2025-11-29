@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import type { Movie } from "../types/movie";
 import { Film } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface Props {
     movie: Movie;
 }
 
 export const MovieCard = ({ movie }: Props) => {
+    const location = useLocation();
     const [posterError, setPosterError] = useState(false);
     const [showFallback, setShowFallback] = useState(false);
 
@@ -24,7 +25,7 @@ export const MovieCard = ({ movie }: Props) => {
     }, [hasPoster]);
 
     return (
-        <Link to={`/movie/${movie._id}`}>
+        <Link to={`/movie/${movie._id}`} state={{ from: `${location.pathname}${location.search}` }}>
         <div className="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden 
                         hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer group">
 

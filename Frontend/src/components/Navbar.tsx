@@ -33,9 +33,7 @@ const ProfileSection = ({ userData }: { userData: User | null }) => {
     );
   return (
     <div className="flex items-center gap-3">
-      <p className="text-sm font-semibold text-white">
         {userData.email.split("@")[0]}
-      </p>
       <ConfirmModal
         title="Are you want logout"
         message="Are you want logout"
@@ -156,7 +154,10 @@ export const Navbar = () => {
           </Link>
         </NavbarItem>
         <NavbarItem>
+          <Link to="/profile"
+          className="text-sm font-semibold text-white hover:text-dcicflix transition">
           <ProfileSection userData={user} />
+          </Link>
         </NavbarItem>
       </NavbarContent>
     </HeroNavbar>

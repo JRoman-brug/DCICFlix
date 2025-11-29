@@ -6,6 +6,7 @@ import {
   PORT,
   USER_MANAGE_ENDPOINT,
   RANKING_ENDPOINT,
+  OPINIONS_ENDPOINT,
   OPINIONS_PROXY_ENDPOINT,
   RANDOM_MOVIES_ENDPOINT,
   MOVIES_ENDPOINT
@@ -60,6 +61,35 @@ app.use(
   })
 );
 
+// Proxy user-specific opinions requests directly to the Opinions service
+// (OpinionsProxy only exposes movie-level endpoints). This ensures
+// /opinions/user/:id is forwarded correctly.
+app.use(
+  "/opinions/user",
+  proxy(OPINIONS_ENDPOINT, {
+    proxyReqPathResolver: (req) => `/api/opinions/user${req.url}`,
+  })
+);
+
+// Opinion-id specific routes (DELETE, GET single opinion, etc.) should
+// go directly to the Opinions service. Mount this before the generic
+// /opinions proxy so these requests are not captured by OpinionsProxy.
+app.use(
+  "/opinions/:opinionId",
+  proxy(OPINIONS_ENDPOINT, {
+    proxyReqPathResolver: (req) => {
+      // req.url when mounted may be '/' or include querystring. Use originalUrl
+      // which has the full path on the gateway. Strip the leading '/opinions/'.
+      const full = req.originalUrl || req.url || '';
+      const prefix = '/opinions/';
+      let suffix = full.startsWith(prefix) ? full.slice(prefix.length) : full;
+      if (!suffix) suffix = '';
+      return `/api/opinions/${suffix}`;
+    },
+  })
+);
+
+// Generic opinions proxy (movie-level endpoints) via OpinionsProxy
 app.use(
   "/opinions",
   proxy(OPINIONS_PROXY_ENDPOINT, {

@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import { MoviePage } from "./pages/MoviePage";
 import Recomendations from "./pages/Recomendations";
 import SearchResults from "./pages/SearchResults";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recomendations" element={<Recomendations />} />
         <Route path="/search" element={<SearchResults />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

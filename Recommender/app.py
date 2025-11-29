@@ -18,6 +18,25 @@ app = Flask(__name__)
 recommender = Recommender(MONGO_URL, DB_NAME)
 
 
+# Simple CORS support for development: add Access-Control-Allow-* headers
+@app.after_request
+def add_cors_headers(response):
+    response.headers.setdefault("Access-Control-Allow-Origin", "*")
+    response.headers.setdefault("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS")
+    response.headers.setdefault(
+        "Access-Control-Allow-Headers",
+        "Content-Type, Authorization, X-Requested-With, X-User-Id, X-User-Email",
+    )
+    return response
+
+
+# respond to OPTIONS preflight globally
+@app.route("/", methods=["OPTIONS"])
+@app.route("/<path:any>", methods=["OPTIONS"])
+def handle_options(any=None):
+    return ("", 204)
+
+
 def get_user_liked_from_opinions(user_id):
     if not OPINIONS_URL:
         logger.info(f"OPINIONS_URL not set, will use DB fallback")
