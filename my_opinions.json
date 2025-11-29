@@ -1,0 +1,428 @@
+[{
+	"_id": {
+		"$oid": "6924ab1fd42fbbf3950219fc"
+	},
+	"ratingId": "6924ab1f4d1ad8820d597927",
+	"userId": "6924aadd6c780f2228546d76",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 3,
+	"comment": "Peliculon",
+	"createdAt": {
+		"$date": "2025-11-24T18:59:43.225Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924acfdd42fbbf395021a65"
+	},
+	"ratingId": "6924acfd4d1ad8820d597929",
+	"userId": "6924aadd6c780f2228546d76",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 3,
+	"comment": "Peliculon",
+	"createdAt": {
+		"$date": "2025-11-24T19:07:41.324Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924acfed42fbbf395021a6a"
+	},
+	"ratingId": "6924acfe4d1ad8820d59792b",
+	"userId": "6924aadd6c780f2228546d76",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 3,
+	"comment": "Peliculon",
+	"createdAt": {
+		"$date": "2025-11-24T19:07:42.192Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924acfed42fbbf395021a6f"
+	},
+	"ratingId": "6924acfe4d1ad8820d59792d",
+	"userId": "6924aadd6c780f2228546d76",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 3,
+	"comment": "Peliculon",
+	"createdAt": {
+		"$date": "2025-11-24T19:07:42.82Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924acffd42fbbf395021a74"
+	},
+	"ratingId": "6924acff4d1ad8820d59792f",
+	"userId": "6924aadd6c780f2228546d76",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 3,
+	"comment": "Peliculon",
+	"createdAt": {
+		"$date": "2025-11-24T19:07:43.467Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924ad00d42fbbf395021a79"
+	},
+	"ratingId": "6924ad004d1ad8820d597931",
+	"userId": "6924aadd6c780f2228546d76",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 3,
+	"comment": "Peliculon",
+	"createdAt": {
+		"$date": "2025-11-24T19:07:44.045Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924b099d42fbbf395021aa0"
+	},
+	"ratingId": "6924b0994d1ad8820d597933",
+	"userId": "6924aadd6c780f2228546d76",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 4,
+	"comment": "Muy buena",
+	"createdAt": {
+		"$date": "2025-11-24T19:23:05.31Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924b1ffd42fbbf395021ab5"
+	},
+	"ratingId": "6924b1ff4d1ad8820d597935",
+	"userId": "6924aadd6c780f2228546d76",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 5,
+	"comment": "Muy buenaaaa",
+	"createdAt": {
+		"$date": "2025-11-24T19:29:03.49Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924b8d450b440b861a94bf1"
+	},
+	"ratingId": "6924b8d44339fa9f8b38a01f",
+	"userId": "6924aadd6c780f2228546d76",
+	"userMail": "test@example.com",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 4,
+	"comment": "Muy buena!",
+	"createdAt": {
+		"$date": "2025-11-24T19:58:12.71Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924b8f750b440b861a94bf8"
+	},
+	"ratingId": "6924b8f74339fa9f8b38a021",
+	"userId": "6924aadd6c780f2228546d76",
+	"userMail": "test@example.com",
+	"movieId": "573a13abf29313caabd25a15",
+	"score": 5,
+	"comment": "La mejor peli que vi",
+	"createdAt": {
+		"$date": "2025-11-24T19:58:47.284Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924ba9e50b440b861a94c17"
+	},
+	"ratingId": "6924ba9e4339fa9f8b38a023",
+	"userId": "6924aadd6c780f2228546d76",
+	"userMail": "test@example.com",
+	"movieId": "573a13a9f29313caabd1f18a",
+	"score": 5,
+	"comment": "Cachiaou",
+	"createdAt": {
+		"$date": "2025-11-24T20:05:50.557Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924c2c350b440b861a94c26"
+	},
+	"ratingId": "6924c2c34339fa9f8b38a025",
+	"userId": "6924aadd6c780f2228546d76",
+	"userMail": "test@example.com",
+	"movieId": "573a13a9f29313caabd1f18a",
+	"score": 5,
+	"comment": "Buenisima",
+	"createdAt": {
+		"$date": "2025-11-24T20:40:35.346Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6924c59b50b440b861a94c33"
+	},
+	"ratingId": "6924c59b4339fa9f8b38a027",
+	"userId": "6924aadd6c780f2228546d76",
+	"userMail": "test@example.com",
+	"movieId": "573a1397f29313caabce8477",
+	"score": 1,
+	"comment": "Una cagada",
+	"createdAt": {
+		"$date": "2025-11-24T20:52:43.133Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6929e200a20ec09b0afe7920"
+	},
+	"ratingId": "6929e200725eb9d7c402cf4b",
+	"userId": "6929e1f04ba546bbe296ddf4",
+	"userMail": "josefinab@gmail.com",
+	"movieId": "573a1398f29313caabce9a50",
+	"score": 4,
+	"comment": "Loved it!",
+	"createdAt": {
+		"$date": "2025-11-28T17:55:12.941Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6929e3e55a6dcd6e43ed8c62"
+	},
+	"ratingId": "6929e3e5a9cafdd5b113ceb8",
+	"userId": "6929e1f04ba546bbe296ddf4",
+	"userMail": "josefinab@gmail.com",
+	"movieId": "573a13daf29313caabdad2d0",
+	"score": 1,
+	"comment": "Weird movie",
+	"createdAt": {
+		"$date": "2025-11-28T18:03:17.626Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6929e4505a6dcd6e43ed8c71"
+	},
+	"ratingId": "6929e450a9cafdd5b113cebb",
+	"userId": "6929e1f04ba546bbe296ddf4",
+	"userMail": "josefinab@gmail.com",
+	"movieId": "573a13d8f29313caabda6ac8",
+	"score": 5,
+	"comment": "Buenisima!",
+	"createdAt": {
+		"$date": "2025-11-28T18:05:04.467Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "6929eae8ba3b96721302fcc5"
+	},
+	"ratingId": "6929eae8c9c5fa0d604018ad",
+	"userId": "6929e1f04ba546bbe296ddf4",
+	"userMail": "josefinab@gmail.com",
+	"movieId": "573a13adf29313caabd2b504",
+	"score": 5,
+	"comment": "The best movie ever!",
+	"createdAt": {
+		"$date": "2025-11-28T18:33:12.01Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692af5b0407738c03a156140"
+	},
+	"ratingId": "692af5b0f7b5dd981ed10b54",
+	"userId": "6929e1f04ba546bbe296ddf4",
+	"userMail": "josefinab@gmail.com",
+	"movieId": "573a139bf29313caabcf3d23",
+	"score": 5,
+	"comment": "Peliculon",
+	"createdAt": {
+		"$date": "2025-11-29T13:31:28.724Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b0649407738c03a15617b"
+	},
+	"ratingId": "692b0649f7b5dd981ed10b57",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a13b6f29313caabd47ba0",
+	"score": 5,
+	"comment": "Muy muy buena!",
+	"createdAt": {
+		"$date": "2025-11-29T14:42:17.439Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b06a8407738c03a15618a"
+	},
+	"ratingId": "692b06a8f7b5dd981ed10b5a",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a13a9f29313caabd1f18a",
+	"score": 5,
+	"comment": "GOD",
+	"createdAt": {
+		"$date": "2025-11-29T14:43:52.717Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b0703407738c03a156199"
+	},
+	"ratingId": "692b0703f7b5dd981ed10b5d",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a139af29313caabcef887",
+	"score": 4,
+	"comment": "10/10",
+	"createdAt": {
+		"$date": "2025-11-29T14:45:23.048Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b0724407738c03a1561a8"
+	},
+	"ratingId": "692b0724f7b5dd981ed10b60",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a139af29313caabcf0d8b",
+	"score": 4,
+	"comment": "yo vivia muy bien y con lujos",
+	"createdAt": {
+		"$date": "2025-11-29T14:45:56.315Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b0780407738c03a1561b7"
+	},
+	"ratingId": "692b0780f7b5dd981ed10b63",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a13daf29313caabdac23e",
+	"score": 3,
+	"comment": "meh",
+	"createdAt": {
+		"$date": "2025-11-29T14:47:28.123Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b07b1407738c03a1561c6"
+	},
+	"ratingId": "692b07b1f7b5dd981ed10b66",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a13bef29313caabd5b27a",
+	"score": 5,
+	"comment": "muy buenaaaaaaaaaa",
+	"createdAt": {
+		"$date": "2025-11-29T14:48:17.726Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b07c6407738c03a1561d1"
+	},
+	"ratingId": "692b07c6f7b5dd981ed10b69",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a13d1f29313caabd8dad0",
+	"score": 5,
+	"comment": "BUENISIMA",
+	"createdAt": {
+		"$date": "2025-11-29T14:48:38.58Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b08d6407738c03a1561dc"
+	},
+	"ratingId": "692b08d6f7b5dd981ed10b6c",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a1399f29313caabcedddc",
+	"score": 5,
+	"comment": "me gusto",
+	"createdAt": {
+		"$date": "2025-11-29T14:53:10.559Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b0912407738c03a1561e7"
+	},
+	"ratingId": "692b0912f7b5dd981ed10b6f",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a13bcf29313caabd57e07",
+	"score": 5,
+	"comment": "!!!",
+	"createdAt": {
+		"$date": "2025-11-29T14:54:10.226Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b096a407738c03a1561f6"
+	},
+	"ratingId": "692b096af7b5dd981ed10b72",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a13c3f29313caabd6b143",
+	"score": 5,
+	"comment": "GOOOOOOD",
+	"createdAt": {
+		"$date": "2025-11-29T14:55:38.577Z"
+	},
+	"__v": 0
+},
+{
+	"_id": {
+		"$oid": "692b097d407738c03a156201"
+	},
+	"ratingId": "692b097df7b5dd981ed10b75",
+	"userId": "692b062019d47d2c9ed5930c",
+	"userMail": "romanpelado@gmail.com",
+	"movieId": "573a13a0f29313caabd0344a",
+	"score": 4,
+	"comment": "!!\"#!\"3",
+	"createdAt": {
+		"$date": "2025-11-29T14:55:57.788Z"
+	},
+	"__v": 0
+}]
+

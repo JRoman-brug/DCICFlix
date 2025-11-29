@@ -176,6 +176,24 @@ services:
     restart: unless-stopped
     networks:
       - microservices
+  recommender:
+    build:
+      context: ./Recommender
+      dockerfile: Dockerfile
+    container_name: recommender
+    depends_on:
+      - mongodb
+      - opiniones
+    environment:
+      - PORT=4500
+      - MONGO_URL=mongodb://admin:admin@mongodb:27017/moviesdb?authSource=admin
+      - DB_NAME=moviesdb
+      - OPINIONS_URL=http://opiniones:4100
+    ports:
+      - "4500:4500"
+    restart: unless-stopped
+    networks:
+      - microservices
   frontend:
     build: 
       context: ./Frontend
