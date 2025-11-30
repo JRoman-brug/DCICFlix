@@ -131,7 +131,8 @@ export const Navbar = () => {
             />
 
             {showDropdown && (loading || results.length > 0 || query.trim() !== "") && (
-              <div className="absolute left-0 mt-2 w-64 bg-zinc-900 border border-zinc-800 rounded-md shadow-lg z-50">
+              <div className="absolute left-0 mt-2 w-64 bg-zinc-900 border border-zinc-800 rounded-md shadow-lg z-50 
+              max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900">
                 {loading && (
                   <div className="p-2 text-sm text-zinc-400">Searching...</div>
                 )}
