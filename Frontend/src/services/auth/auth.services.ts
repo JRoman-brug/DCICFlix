@@ -30,8 +30,11 @@ export const register = async (userData: RegisterCredentials) => {
 };
 
 export const logout = async () => {
-  const response = await api.post("/auth/logout");
+  try {
+    await api.post("/auth/logout"); 
+  } catch (error) {
+    console.warn("Logout failed (probably token expired). Clearing local session...");
+  }
   localStorage.removeItem("jwt_token");
-  localStorage.removeItem("user_data");
-  return response.data;
+  localStorage.removeItem("email_data");
 };

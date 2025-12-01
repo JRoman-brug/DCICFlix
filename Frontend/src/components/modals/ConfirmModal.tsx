@@ -51,7 +51,7 @@ function ConfirmModal({
                     onClose();
                   }}
                 >
-                  confirm
+                  Confirm
                 </Button>
               </ModalFooter>
             </>

@@ -111,15 +111,30 @@ export async function logout(req, res, next) {
   try {
     const token = verifyBearerToken(req.headers);
 
-    const { jti: jti, exp: tokenExp } = await verify(token);
+    let jti = null;
+    let tokenExp = null;
 
+    try {
+      // Intentamos verificar (puede tirar TokenExpiredError)
+      const decoded = await verify(token);
+      jti = decoded.jti;
+      tokenExp = decoded.exp;
+    } catch (err) {
+      // Token expirado o inválido → seguimos igual
+      log("Logout with expired or invalid token, continuing anyway");
+
+      // Intentamos extraer info básica aunque esté expirado
+      // jsonwebtoken permite decodificar sin verificar:
+      const base64Payload = token.split(".")[1];
+      const payload = JSON.parse(Buffer.from(base64Payload, "base64").toString());
+      jti = payload.jti ?? null;
+      tokenExp = payload.exp ?? null;
+    }
+
+    // Incluso si jti es null, revokeToken debe manejarlo sin romper
     await revokeToken(jti, tokenExp);
-    return res
-      .status(201)
-      .json({
-        message: "Logout successfully",
-      })
-      .send();
+
+    return res.status(200).json({ message: "Logout successfully" });
   } catch (err) {
     log(err);
     next(err);
