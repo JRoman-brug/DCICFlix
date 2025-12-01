@@ -69,7 +69,7 @@ function RecomendationsGrid({ userId }: Props) {
   return (
     <div
       className="
-            h-screen
+            min-h-[calc(100vh-64px)]
             px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12
             grid gap-6 mt-6
             grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6

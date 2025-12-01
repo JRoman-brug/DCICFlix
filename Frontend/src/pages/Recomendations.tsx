@@ -7,7 +7,7 @@ function Recomendations() {
   const { isAuthenticated, user } = useAuth();
   return (
     <>
-      <Navbar />
+      <Navbar  />
       {!isAuthenticated ? (
         <div className="w-full h-[calc(100vh-64px)] flex items-center justify-center px-4">
           <div className="text-center">

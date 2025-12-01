@@ -72,7 +72,7 @@ export const Navbar = () => {
     <HeroNavbar
       maxWidth="xl"
       position="static"
-      className="bg-black text-white border-b border-zinc-800"
+      className="bg-black text-white border-b border-zinc-800 relative z-[1000]"
     >
       <NavbarBrand>
         <Link to="/" className="inline-block">
@@ -86,7 +86,7 @@ export const Navbar = () => {
 
       <NavbarContent className="ml-0 sm:ml-[-360px]">
         <NavbarItem>
-          <div className="relative" ref={containerRef}>
+          <div className="relative z-50" ref={containerRef}>
             <input
               type="text"
               name="q"
