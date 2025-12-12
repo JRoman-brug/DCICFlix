@@ -1,0 +1,5 @@
+# Mantener por defecto el comportamiento automático
+* text=auto
+
+# Forzar siempre LF (Linux) para archivos de script bash
+*.sh text eol=lf
